@@ -1,0 +1,140 @@
+<div class="button-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <img src="assets/angular-logo-glass.png" class="page-logo" alt="Angular Liquid Glass" />
+      <div class="page-header-text">
+      <h1>Liquid Glass Button</h1>
+      <p class="page-description">
+        An interactive button with Apple-inspired liquid glass aesthetics. Combines SVG turbulence
+        filters, <code>backdrop-filter</code>, and a dynamic specular highlight that follows
+        the cursor on hover.
+      </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Demo -->
+  <section class="demo-section">
+    <div class="demo-viewport">
+      <angular-liquid-glass-button
+        [blur]="blur()"
+        [background]="background()"
+        [borderRadius]="borderRadius()"
+        [scale]="scaleValue()"
+      >
+        Liquid Glass Button
+      </angular-liquid-glass-button>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls-panel">
+      <h2 class="controls-title">Controls</h2>
+
+      <div class="controls-grid">
+        <div class="control-group">
+          <div class="control-label">
+            <span>Glass Blur</span>
+            <span class="control-value">{{ blurValue() }}px</span>
+          </div>
+          <input
+            type="range" min="0" max="20" step="1"
+            [value]="blurValue()"
+            (input)="blurValue.set(+$any($event.target).value)"
+          />
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <span>Border Radius</span>
+            <span class="control-value">{{ radiusValue() }}px</span>
+          </div>
+          <input
+            type="range" min="0" max="64" step="2"
+            [value]="radiusValue()"
+            (input)="radiusValue.set(+$any($event.target).value)"
+          />
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <span>Distortion Scale</span>
+            <span class="control-value">{{ scaleValue() }}</span>
+          </div>
+          <input
+            type="range" min="0" max="150" step="1"
+            [value]="scaleValue()"
+            (input)="scaleValue.set(+$any($event.target).value)"
+          />
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <label class="toggle-label">
+              <input
+                type="checkbox"
+                [checked]="bgEnabled()"
+                (change)="bgEnabled.set($any($event.target).checked)"
+                class="toggle-checkbox"
+              />
+              <span>Background Color</span>
+            </label>
+            <span class="control-value">{{ bgEnabled() ? background() : 'none' }}</span>
+          </div>
+          <div class="color-row" [class.disabled]="!bgEnabled()">
+            <input
+              type="color"
+              [value]="bgColor()"
+              (input)="bgColor.set($any($event.target).value)"
+              class="color-picker"
+              [disabled]="!bgEnabled()"
+            />
+            <input
+              type="range" min="0" max="80" step="1"
+              [value]="bgAlpha()"
+              (input)="bgAlpha.set(+$any($event.target).value)"
+              class="alpha-slider"
+              [disabled]="!bgEnabled()"
+            />
+            <span class="control-value">{{ bgAlpha() }}%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live template snippet -->
+      <div class="live-snippet">
+        <docs-code-block [code]="htmlSnippet()" language="html" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Code -->
+  <section class="code-section">
+    <div class="code-section-inner">
+      <h2>Usage</h2>
+      <p class="section-description">
+        Import <code>LiquidGlassButtonComponent</code> and place any content inside the tag.
+        The button includes a built-in specular highlight that follows the cursor on hover.
+      </p>
+
+      <docs-code-block [code]="tsSnippet" language="typescript" />
+
+      <h3>Inputs</h3>
+      <div class="inputs-table">
+        <div class="table-header">
+          <span>Input</span><span>Type</span><span>Default</span><span>Description</span>
+        </div>
+        @for (row of inputRows; track row.name) {
+          <div class="table-row">
+            <code>{{ row.name }}</code>
+            <span class="type">{{ row.type }}</span>
+            <code class="default">{{ row.default }}</code>
+            <span class="desc">{{ row.desc }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+</div>

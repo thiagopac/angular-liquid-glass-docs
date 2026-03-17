@@ -1,0 +1,23 @@
+<div class="docs-layout">
+  <header class="docs-header">
+    <div class="header-inner">
+      <a class="nav-logo" routerLink="/">
+        Angular Liquid Glass Docs
+      </a>
+
+      <nav class="nav-links" aria-label="Components">
+        @for (item of navItems; track item.path) {
+          <a
+            class="nav-link"
+            [routerLink]="item.path"
+            routerLinkActive="active"
+          >{{ item.label }}</a>
+        }
+      </nav>
+    </div>
+  </header>
+
+  <main class="docs-main">
+    <router-outlet />
+  </main>
+</div>

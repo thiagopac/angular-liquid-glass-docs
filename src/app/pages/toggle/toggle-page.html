@@ -1,0 +1,160 @@
+<div class="toggle-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <img src="assets/angular-logo-glass.png" class="page-logo" alt="Angular Liquid Glass" />
+      <div class="page-header-text">
+      <h1>Liquid Glass Toggle</h1>
+      <p class="page-description">
+        A glass-surface switch with a sliding thumb and smooth spring transition.
+        Supports Angular's <code>[(checked)]</code> two-way binding out of the box via
+        <code>model()</code>. Use <code>offColor</code> and <code>onColor</code> to
+        tint the track for each state.
+      </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Demo -->
+  <section class="demo-section">
+    <div class="demo-viewport">
+      <div class="demo-toggles">
+        <angular-liquid-glass-toggle
+          label="Dark Mode"
+          [blur]="blur()"
+          [offColor]="offColor()"
+          [onColor]="onColor()"
+          [scale]="scaleValue()"
+          [(checked)]="toggle1"
+        />
+        <angular-liquid-glass-toggle
+          label="Notifications"
+          [blur]="blur()"
+          [offColor]="offColor()"
+          [onColor]="onColor()"
+          [scale]="scaleValue()"
+          [(checked)]="toggle2"
+        />
+        <angular-liquid-glass-toggle
+          label="Auto Update"
+          [blur]="blur()"
+          [offColor]="offColor()"
+          [onColor]="onColor()"
+          [scale]="scaleValue()"
+          [(checked)]="toggle3"
+        />
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls-panel">
+      <h2 class="controls-title">Controls</h2>
+
+      <div class="controls-grid">
+
+        <div class="control-group">
+          <div class="control-label">
+            <span>Off Color</span>
+            <span class="control-value">{{ offColor() }}</span>
+          </div>
+          <div class="color-row">
+            <input
+              type="color"
+              [value]="offColorHex()"
+              (input)="offColorHex.set($any($event.target).value)"
+              class="color-picker"
+            />
+            <input
+              type="range" min="0" max="80" step="1"
+              [value]="offAlpha()"
+              (input)="offAlpha.set(+$any($event.target).value)"
+              class="alpha-slider"
+            />
+            <span class="control-value">{{ offAlpha() }}%</span>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <span>On Color</span>
+            <span class="control-value">{{ onColor() }}</span>
+          </div>
+          <div class="color-row">
+            <input
+              type="color"
+              [value]="onColorHex()"
+              (input)="onColorHex.set($any($event.target).value)"
+              class="color-picker"
+            />
+            <input
+              type="range" min="0" max="80" step="1"
+              [value]="onAlpha()"
+              (input)="onAlpha.set(+$any($event.target).value)"
+              class="alpha-slider"
+            />
+            <span class="control-value">{{ onAlpha() }}%</span>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <span>Glass Blur</span>
+            <span class="control-value">{{ blurValue() }}px</span>
+          </div>
+          <input
+            type="range" min="0" max="20" step="1"
+            [value]="blurValue()"
+            (input)="blurValue.set(+$any($event.target).value)"
+          />
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <span>Distortion Scale</span>
+            <span class="control-value">{{ scaleValue() }}</span>
+          </div>
+          <input
+            type="range" min="0" max="150" step="1"
+            [value]="scaleValue()"
+            (input)="scaleValue.set(+$any($event.target).value)"
+          />
+        </div>
+
+      </div>
+
+      <div class="live-snippet">
+        <docs-code-block [code]="htmlSnippet()" language="html" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Code -->
+  <section class="code-section">
+    <div class="code-section-inner">
+      <h2>Usage</h2>
+      <p class="section-description">
+        Use <code>[(checked)]</code> for two-way binding. The <code>label</code> input
+        is optional. Set <code>onColor</code> to any rgba to tint the track when active.
+      </p>
+
+      <docs-code-block [code]="tsSnippet" language="typescript" />
+
+      <h3>Inputs</h3>
+      <div class="inputs-table">
+        <div class="table-header">
+          <span>Input</span><span>Type</span><span>Default</span><span>Description</span>
+        </div>
+        @for (row of inputRows; track row.name) {
+          <div class="table-row">
+            <code>{{ row.name }}</code>
+            <span class="type">{{ row.type }}</span>
+            <code class="default">{{ row.default }}</code>
+            <span class="desc">{{ row.desc }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+</div>

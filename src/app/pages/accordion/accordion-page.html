@@ -1,0 +1,172 @@
+<div class="accordion-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="page-header-inner">
+      <img src="assets/angular-logo-glass.png" class="page-logo" alt="Angular Liquid Glass" />
+      <div class="page-header-text">
+      <h1>Liquid Glass Accordion</h1>
+      <p class="page-description">
+        A self-contained collapsible panel with glass aesthetics. Each
+        <code>angular-liquid-glass-accordion</code> manages its own open/close state independently —
+        no container component required.
+      </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Live Demo -->
+  <section class="demo-section">
+    <div class="demo-viewport">
+      <div class="demo-accordions">
+        <angular-liquid-glass-accordion
+          label="What is Liquid Glass?"
+          [blur]="blur()"
+          [background]="background()"
+          [borderRadius]="borderRadius()"
+          [scale]="scaleValue()"
+        >
+          <p>
+            Liquid Glass is a design language by Apple that combines frosted glass, SVG turbulence
+            distortion, and specular highlights to simulate a refractive glass surface.
+          </p>
+        </angular-liquid-glass-accordion>
+
+        <angular-liquid-glass-accordion
+          label="How does it work?"
+          [blur]="blur()"
+          [background]="background()"
+          [borderRadius]="borderRadius()"
+          [scale]="scaleValue()"
+        >
+          <p>
+            Each component appends a hidden SVG filter to the document body and applies it via
+            <code>filter: url(#id)</code> combined with <code>backdrop-filter</code> to distort and
+            blur the content behind the glass surface.
+          </p>
+        </angular-liquid-glass-accordion>
+
+        <angular-liquid-glass-accordion
+          label="Browser support"
+          [blur]="blur()"
+          [background]="background()"
+          [borderRadius]="borderRadius()"
+          [scale]="scaleValue()"
+        >
+          <p>
+            Full effect requires Chrome. Other browsers will display a simplified frosted glass
+            version without the SVG distortion filter.
+          </p>
+        </angular-liquid-glass-accordion>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls-panel">
+      <h2 class="controls-title">Controls</h2>
+
+      <div class="controls-grid">
+        <div class="control-group">
+          <div class="control-label">
+            <span>Glass Blur</span>
+            <span class="control-value">{{ blurValue() }}px</span>
+          </div>
+          <input
+            type="range" min="0" max="20" step="1"
+            [value]="blurValue()"
+            (input)="blurValue.set(+$any($event.target).value)"
+          />
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <span>Border Radius</span>
+            <span class="control-value">{{ radiusValue() }}px</span>
+          </div>
+          <input
+            type="range" min="0" max="32" step="2"
+            [value]="radiusValue()"
+            (input)="radiusValue.set(+$any($event.target).value)"
+          />
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <span>Distortion Scale</span>
+            <span class="control-value">{{ scaleValue() }}</span>
+          </div>
+          <input
+            type="range" min="0" max="150" step="1"
+            [value]="scaleValue()"
+            (input)="scaleValue.set(+$any($event.target).value)"
+          />
+        </div>
+
+        <div class="control-group">
+          <div class="control-label">
+            <label class="toggle-label">
+              <input
+                type="checkbox"
+                [checked]="bgEnabled()"
+                (change)="bgEnabled.set($any($event.target).checked)"
+                class="toggle-checkbox"
+              />
+              <span>Background Color</span>
+            </label>
+            <span class="control-value">{{ bgEnabled() ? background() : 'none' }}</span>
+          </div>
+          <div class="color-row" [class.disabled]="!bgEnabled()">
+            <input
+              type="color"
+              [value]="bgColor()"
+              (input)="bgColor.set($any($event.target).value)"
+              class="color-picker"
+              [disabled]="!bgEnabled()"
+            />
+            <input
+              type="range" min="0" max="80" step="1"
+              [value]="bgAlpha()"
+              (input)="bgAlpha.set(+$any($event.target).value)"
+              class="alpha-slider"
+              [disabled]="!bgEnabled()"
+            />
+            <span class="control-value">{{ bgAlpha() }}%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="live-snippet">
+        <docs-code-block [code]="htmlSnippet()" language="html" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Code -->
+  <section class="code-section">
+    <div class="code-section-inner">
+      <h2>Usage</h2>
+      <p class="section-description">
+        Import <code>LiquidGlassAccordionComponent</code> and use as many instances as needed.
+        Each one independently controls its own expanded state.
+      </p>
+
+      <docs-code-block [code]="tsSnippet" language="typescript" />
+
+      <h3>Inputs</h3>
+      <div class="inputs-table">
+        <div class="table-header">
+          <span>Input</span><span>Type</span><span>Default</span><span>Description</span>
+        </div>
+        @for (row of inputRows; track row.name) {
+          <div class="table-row">
+            <code>{{ row.name }}</code>
+            <span class="type">{{ row.type }}</span>
+            <code class="default">{{ row.default }}</code>
+            <span class="desc">{{ row.desc }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+</div>
