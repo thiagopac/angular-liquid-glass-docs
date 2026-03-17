@@ -1,19 +1,29 @@
 <div class="docs-layout">
   <header class="docs-header">
     <div class="header-inner">
-      <a class="nav-logo" routerLink="/">
-        Angular Liquid Glass
-      </a>
+      <a class="nav-logo" routerLink="/"> Angular Liquid Glass </a>
 
       <nav class="nav-links" aria-label="Components">
         @for (item of navItems; track item.path) {
-          <a
-            class="nav-link"
-            [routerLink]="item.path"
-            routerLinkActive="active"
-          >{{ item.label }}</a>
+          <a class="nav-link" [routerLink]="item.path" routerLinkActive="active">{{
+            item.label
+          }}</a>
         }
       </nav>
+
+      <a
+        class="github-link"
+        href="https://github.com/thiagopac/angular-liquid-glass"
+        target="_blank"
+        rel="noreferrer"
+        aria-label="Open angular-liquid-glass on GitHub"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M12 2C6.48 2 2 6.58 2 12.22c0 4.51 2.87 8.34 6.84 9.69.5.09.68-.22.68-.49 0-.24-.01-1.03-.01-1.87-2.78.62-3.37-1.2-3.37-1.2-.46-1.19-1.11-1.51-1.11-1.51-.91-.64.07-.63.07-.63 1 .08 1.53 1.05 1.53 1.05.9 1.57 2.35 1.12 2.92.86.09-.67.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.74-.1-.26-.45-1.31.1-2.74 0 0 .84-.28 2.75 1.05A9.3 9.3 0 0 1 12 6.84c.85 0 1.7.12 2.5.36 1.9-1.33 2.74-1.05 2.74-1.05.56 1.43.21 2.48.11 2.74.64.71 1.03 1.62 1.03 2.74 0 3.93-2.34 4.8-4.58 5.05.36.32.68.94.68 1.9 0 1.37-.01 2.48-.01 2.82 0 .27.18.59.69.49A10.23 10.23 0 0 0 22 12.22C22 6.58 17.52 2 12 2Z"
+          />
+        </svg>
+      </a>
     </div>
   </header>
 
