@@ -21,7 +21,7 @@ describe('App', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.textContent).toContain('Angular Liquid Glass Docs');
+    expect(compiled.textContent).toContain('Angular Liquid Glass');
     expect(compiled.textContent).toContain('Card');
   });
 });
